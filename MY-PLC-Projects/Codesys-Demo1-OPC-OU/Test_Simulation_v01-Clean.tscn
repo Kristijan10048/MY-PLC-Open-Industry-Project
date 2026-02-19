@@ -15,7 +15,7 @@ metadata/_edit_lock_ = true
 [node name="Building" parent="." unique_id=183560046 instance=ExtResource("1_il5xf")]
 metadata/_edit_lock_ = true
 
-[node name="CurvedBeltConveyorAssembly" parent="." unique_id=250519520 instance=ExtResource("3_vl4uf")]
+[node name="CurvedBeltConveyor_2" parent="." unique_id=250519520 instance=ExtResource("3_vl4uf")]
 transform = Transform3D(-0.99972814, 0, -0.023315556, 0, 1, 0, 0.023315556, 0, -0.99972814, 5.8370337, -9.536743e-07, 5.2039175)
 
 [node name="BeltConveyor1-Long" parent="." unique_id=197585006 instance=ExtResource("4_pulye")]
@@ -37,14 +37,14 @@ enable_comms = true
 pushbutton_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.btn_xSwitch1"
 lamp_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.btn_xSwitch1"
 
-[node name="BeltConveyorAssembly2" parent="." unique_id=907163149 instance=ExtResource("4_pulye")]
+[node name="BeltConveyor2-Short" parent="." unique_id=907163149 instance=ExtResource("4_pulye")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.1909847, 0.040503502, 7.487132)
 local_floor_plane = Plane(0, 1, 0, -2.0405035)
 
 [node name="Despawner" parent="." unique_id=1495546615 instance=ExtResource("7_5m1dp")]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 7.293389, 1.0190463, 9.924437)
 
-[node name="BoxSpawner2" parent="." unique_id=357432137 node_paths=PackedStringArray("conveyor") instance=ExtResource("2_got0p")]
+[node name="BoxSpawner" parent="." unique_id=357432137 node_paths=PackedStringArray("conveyor") instance=ExtResource("2_got0p")]
 transform = Transform3D(1, 2.30012e-09, -9.31322e-10, -2.30012e-09, 1, 8.84756e-09, 9.31322e-10, -8.84756e-09, 1, -12.362641, 0.553227, 3.8806076)
 boxes_per_minute = 15
 conveyor = NodePath("../BeltConveyor1-Long")
