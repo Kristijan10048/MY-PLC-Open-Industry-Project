@@ -15,7 +15,7 @@ scene_library/cache/path="res://addons/scene-library/thumb_cache/"
 [application]
 
 config/name="Open Industry Project"
-config/features=PackedStringArray("4.7", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/stretch_mode=0
 boot_splash/image="res://assets/png/splash.png"
 run/scene_time_scale=1.0
