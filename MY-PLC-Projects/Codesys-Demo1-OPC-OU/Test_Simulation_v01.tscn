@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://clceha6w83tfy"]
+
+[ext_resource type="PackedScene" uid="uid://dyhvoundu2kqc" path="res://parts/Building.tscn" id="1_il5xf"]
+[ext_resource type="PackedScene" uid="uid://co2mqmdwpn57w" path="res://parts/BoxSpawner.tscn" id="2_got0p"]
+[ext_resource type="PackedScene" uid="uid://dvpvhht5hn7ww" path="res://parts/assemblies/CurvedBeltConveyorAssembly.tscn" id="3_vl4uf"]
+[ext_resource type="PackedScene" uid="uid://bqlkj4ar8q1ws" path="res://parts/assemblies/BeltConveyorAssembly.tscn" id="4_pulye"]
+[ext_resource type="PackedScene" uid="uid://nsio1mg8ru3w" path="res://parts/LaserSensor.tscn" id="5_4dllf"]
+[ext_resource type="PackedScene" uid="uid://gddgyvex6gdj" path="res://parts/PushButton.tscn" id="6_th6r0"]
+[ext_resource type="PackedScene" uid="uid://bl73u0rvt2orv" path="res://parts/Despawner.tscn" id="7_5m1dp"]
+[ext_resource type="PackedScene" uid="uid://x7ajd6h1vd07" path="res://parts/ColorSensor.tscn" id="8_vl4uf"]
+[ext_resource type="PackedScene" uid="uid://oal0yggy6nbl" path="res://assets/robots/kuka/kuka-kr120/kuka_robot_arm_kr120_r2700_extra_f.glb" id="9_pulye"]
+[ext_resource type="PackedScene" uid="uid://bxhm3lo1ua4jv" path="res://assets/humans/male_worker_1/worker_with_arms_outstretched.glb" id="10_pulye"]
+
+[node name="Simulation" type="Node3D" unique_id=1110247312]
+
+[node name="Building" parent="." unique_id=183560046 instance=ExtResource("1_il5xf")]
+
+[node name="BoxSpawner" parent="." unique_id=1009593353 instance=ExtResource("2_got0p")]
+transform = Transform3D(1, 2.30012e-09, -9.31322e-10, -2.30012e-09, 1, 8.84756e-09, 9.31322e-10, -8.84756e-09, 1, -331.33072, -93.88165, -625.23236)
+
+[node name="CurvedBeltConveyorAssembly" parent="." unique_id=250519520 instance=ExtResource("3_vl4uf")]
+transform = Transform3D(-0.99972814, 0, -0.023315556, 0, 1, 0, 0.023315556, 0, -0.99972814, 5.8370337, -9.536743e-07, 5.2039175)
+
+[node name="BeltConveyorAssembly" parent="." unique_id=197585006 instance=ExtResource("4_pulye")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7667794, 4.7683716e-07, 3.9000974)
+local_floor_plane = Plane(0, 1, 0, -2.0000005)
+speed = 0.6
+enable_comms = true
+speed_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.conv_speed1"
+running_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.xMotor"
+size = Vector3(18.3007, 0.5, 1.524)
+
+[node name="LaserSensor" parent="." unique_id=1636363449 instance=ExtResource("5_4dllf")]
+transform = Transform3D(0.99995035, -0.0014913238, -0.009849932, 0.0014998636, 0.9999985, 0.000859515, 0.009848636, -0.0008742484, 0.9999511, 1.1908236, 1.1372935, 2.9398913)
+enable_comms = true
+
+[node name="PushButton" parent="." unique_id=1216453833 instance=ExtResource("6_th6r0")]
+transform = Transform3D(0.9990911, 0, 0.042625383, 0, 1, 0, -0.042625383, 0, 0.9990911, -11.990959, 0.06961191, 4.8019986)
+enable_comms = true
+pushbutton_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.btn_xSwitch1"
+lamp_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.btn_xSwitch1"
+
+[node name="BeltConveyorAssembly2" parent="." unique_id=907163149 instance=ExtResource("4_pulye")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.1909847, 0.040503502, 7.487132)
+local_floor_plane = Plane(0, 1, 0, -2.0405035)
+
+[node name="Despawner" parent="." unique_id=1495546615 instance=ExtResource("7_5m1dp")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 7.293389, 1.0190463, 9.924437)
+
+[node name="BoxSpawner2" parent="." unique_id=357432137 node_paths=PackedStringArray("conveyor") instance=ExtResource("2_got0p")]
+transform = Transform3D(1, 2.30012e-09, -9.31322e-10, -2.30012e-09, 1, 8.84756e-09, 9.31322e-10, -8.84756e-09, 1, -12.362641, 0.553227, 3.8806076)
+boxes_per_minute = 15
+conveyor = NodePath("../BeltConveyorAssembly")
+
+[node name="ColorSensor" parent="." unique_id=2040135411 instance=ExtResource("8_vl4uf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.773538, 0.88304555, 2.4301062)
+enable_comms = true
+
+[node name="Sketchfab_Scene" parent="." unique_id=2061260094 instance=ExtResource("9_pulye")]
+transform = Transform3D(-0.007085979, 0, -0.99997497, 0, 1, 0, 0.99997497, 0, -0.007085979, 0.81882095, -2, 10.084106)
+
+[node name="Sketchfab_Scene2" parent="." unique_id=1081889215 instance=ExtResource("10_pulye")]
+transform = Transform3D(0.9998226, -0.01698811, -0.008114427, 0.017427595, 0.9981893, 0.05757219, 0.0071217716, -0.057703394, 0.9983083, -3.8141766, 0.41756916, -4.717488)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1801069710]
+
+[node name="OIPComms" type="OIPComms" parent="AnimationPlayer" unique_id=889726329]
