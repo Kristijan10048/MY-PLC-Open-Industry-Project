@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bl73u0rvt2orv" path="res://parts/Despawner.tscn" id="7_5m1dp"]
 [ext_resource type="PackedScene" uid="uid://x7ajd6h1vd07" path="res://parts/ColorSensor.tscn" id="8_vl4uf"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hcu6p"]
+friction = 0.5
+
 [node name="Simulation" type="Node3D" unique_id=1110247312]
 metadata/_edit_lock_ = true
 
@@ -22,22 +25,22 @@ metadata/_edit_lock_ = true
 [node name="BeltConveyor1-Long" parent="." unique_id=197585006 instance=ExtResource("4_pulye")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7667794, 4.7683716e-07, 3.9000974)
 local_floor_plane = Plane(0, 1, 0, -2.0000005)
-speed = 0.6
+belt_physics_material = SubResource("PhysicsMaterial_hcu6p")
 enable_comms = true
-speed_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.conv_speed1"
-running_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.xMotor"
+speed_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.iConv1Spd"
 size = Vector3(18.3007, 0.5, 1.524)
-metadata/_edit_lock_ = true
 
 [node name="LaserSensor" parent="." unique_id=1636363449 instance=ExtResource("5_4dllf")]
 transform = Transform3D(0.99995035, -0.0014913238, -0.009849932, 0.0014998636, 0.9999985, 0.000859515, 0.009848636, -0.0008742484, 0.9999511, 1.1908236, 1.1372935, 2.9398913)
 enable_comms = true
 
 [node name="PushButton" parent="." unique_id=1216453833 instance=ExtResource("6_th6r0")]
-transform = Transform3D(0.9990911, 0, 0.042625383, 0, 1, 0, -0.042625383, 0, 0.9990911, -3.3763113, 0.06961191, 4.8019986)
+transform = Transform3D(0.9990911, 0, 0.042625383, 0, 1, 0, -0.042625383, 0, 0.9990911, -3.3823817, 0.06961167, 5.28276)
+toggle = true
+lamp = true
 enable_comms = true
-pushbutton_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.btn_xSwitch1"
-lamp_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.btn_xSwitch1"
+pushbutton_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.btn_bMainPwr"
+lamp_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.btn_bMainPwrLamp"
 
 [node name="BeltConveyor2-Short" parent="." unique_id=907163149 instance=ExtResource("4_pulye")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.1909847, 0.040503502, 7.487132)
@@ -47,10 +50,9 @@ metadata/_edit_lock_ = true
 [node name="Despawner" parent="." unique_id=1495546615 instance=ExtResource("7_5m1dp")]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 7.293389, 1.0190463, 9.924437)
 
-[node name="BoxSpawner" parent="." unique_id=357432137 node_paths=PackedStringArray("conveyor") instance=ExtResource("2_got0p")]
+[node name="BoxSpawner" parent="." unique_id=357432137 instance=ExtResource("2_got0p")]
 transform = Transform3D(1, 2.30012e-09, -9.31322e-10, -2.30012e-09, 1, 8.84756e-09, 9.31322e-10, -8.84756e-09, 1, -12.362641, 0.553227, 3.8806076)
 boxes_per_minute = 15
-conveyor = NodePath("../BeltConveyor1-Long")
 metadata/_edit_lock_ = true
 
 [node name="ColorSensor" parent="." unique_id=2040135411 instance=ExtResource("8_vl4uf")]

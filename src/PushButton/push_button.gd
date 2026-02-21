@@ -202,6 +202,7 @@ func _update_output() -> void:
 
 func _on_simulation_started() -> void:
 	if enable_comms:
+		OIPComms.set_enable_debug_log(true)
 		_register_pushbutton_tag_ok = OIPComms.register_tag(pushbutton_tag_group_name, pushbutton_tag_name, 1)
 		_register_lamp_tag_ok = OIPComms.register_tag(lamp_tag_group_name, lamp_tag_name, 1)
 
@@ -218,7 +219,16 @@ func _tag_group_initialized(tag_group_name_param: String) -> void:
 
 func _tag_group_polled(tag_group_name_param: String) -> void:
 	if not enable_comms:
+		print("---- OIP Conms not enabled")
 		return
-		
+	
+	if not OIPComms.get_enable_debug_log():
+		print("Logs not enabled. Enabling!")
+		OIPComms.set_enable_debug_log(true)
+	#print("Push Button read tag_group %s - %s",lamp_tag_group_name, lamp_tag_name)	
 	if tag_group_name_param == lamp_tag_group_name:
-		lamp = OIPComms.read_bit(lamp_tag_group_name, lamp_tag_name)
+		lamp = OIPComms.read_bit_v1(lamp_tag_group_name, lamp_tag_name)
+		# lamp = true
+		# debug
+		#var plc_lamp_value: bool = OIPComms.read_bit_v1(lamp_tag_group_name, lamp_tag_name)
+		print("---- OIP Conms read %s - %s = %s" % [lamp_tag_group_name, lamp_tag_name, lamp])
