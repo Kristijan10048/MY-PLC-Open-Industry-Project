@@ -155,6 +155,10 @@ func use() -> void:
 
 func _on_simulation_started() -> void:
 	if enable_comms:
+		if not OIPComms.get_enable_debug_log():
+			print("Logs not enabled. Enabling!")
+			OIPComms.set_enable_debug_log(true)
+		
 		_register_tag_ok = OIPComms.register_tag(tag_group_name, tag_name, 1)
 
 
