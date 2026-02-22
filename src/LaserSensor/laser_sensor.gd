@@ -21,6 +21,7 @@ extends Node3D
 @export_custom(PROPERTY_HINT_NONE, "suffix:m") var distance: float = max_range:
 	set(value):
 		if _register_tag_ok and _tag_group_init and value != distance:
+			print("[UI] [LASER] [DEBUG] about to write opc tag:%s - %s=%1.3f " % [tag_group_name, tag_name, value] )
 			OIPComms.write_float32(tag_group_name, tag_name, value)
 		distance = value
 
@@ -108,11 +109,13 @@ func _physics_process(_delta: float) -> void:
 	var query := PhysicsRayQueryParameters3D.create(start_pos, end_pos, 8)
 	var space_state := get_world_3d().direct_space_state
 	var result := space_state.intersect_ray(query)
-
+	
+	
 	var new_distance: float
 	var beam_color: Color
-	if result.size() > 0:
+	if result.size() > 0:		
 		new_distance = start_pos.distance_to(result["position"])
+		print("[UI] [LASER] [DEBUG] laser distance: ",  new_distance)
 		beam_color = Color.RED
 	else:
 		new_distance = max_range
@@ -159,4 +162,5 @@ func _tag_group_initialized(tag_group_name_param: String) -> void:
 	if tag_group_name_param == tag_group_name:
 		_tag_group_init = true
 		if _register_tag_ok:
+			print("[UI] [LASER] [DEBUG] _tag_group_initialized() about to write opc tag: %s %s %2.2f " % [tag_group_name, tag_name, distance])
 			OIPComms.write_float32(tag_group_name, tag_name, distance)

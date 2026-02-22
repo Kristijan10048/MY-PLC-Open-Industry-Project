@@ -8,9 +8,21 @@
 [ext_resource type="PackedScene" uid="uid://gddgyvex6gdj" path="res://parts/PushButton.tscn" id="6_th6r0"]
 [ext_resource type="PackedScene" uid="uid://bl73u0rvt2orv" path="res://parts/Despawner.tscn" id="7_5m1dp"]
 [ext_resource type="PackedScene" uid="uid://x7ajd6h1vd07" path="res://parts/ColorSensor.tscn" id="8_vl4uf"]
+[ext_resource type="PackedScene" uid="uid://drle8i15nwr68" path="res://parts/StackLight.tscn" id="9_dp7fj"]
+[ext_resource type="Script" uid="uid://bl7o7avq4pi78" path="res://src/StackLight/stack_light_data.gd" id="10_4kntv"]
+[ext_resource type="Script" uid="uid://buet0tp11gjdl" path="res://src/StackLight/stack_segment_data.gd" id="11_bgwox"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hcu6p"]
 friction = 0.5
+
+[sub_resource type="Resource" id="Resource_kmise"]
+resource_local_to_scene = true
+script = ExtResource("11_bgwox")
+
+[sub_resource type="Resource" id="Resource_hm2q3"]
+resource_local_to_scene = true
+script = ExtResource("10_4kntv")
+segment_datas = [SubResource("Resource_kmise")]
 
 [node name="Simulation" type="Node3D" unique_id=1110247312]
 metadata/_edit_lock_ = true
@@ -25,19 +37,21 @@ metadata/_edit_lock_ = true
 [node name="BeltConveyor1-Long" parent="." unique_id=197585006 instance=ExtResource("4_pulye")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7667794, 4.7683716e-07, 3.9000974)
 local_floor_plane = Plane(0, 1, 0, -2.0000005)
+speed = 4.5
 belt_physics_material = SubResource("PhysicsMaterial_hcu6p")
 enable_comms = true
 speed_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.iConv1Spd"
 size = Vector3(18.3007, 0.5, 1.524)
 
 [node name="LaserSensor" parent="." unique_id=1636363449 instance=ExtResource("5_4dllf")]
-transform = Transform3D(0.99995035, -0.0014913238, -0.009849932, 0.0014998636, 0.9999985, 0.000859515, 0.009848636, -0.0008742484, 0.9999511, 1.1908236, 1.1372935, 2.9398913)
+transform = Transform3D(0.99995035, -0.0014913238, -0.009849932, 0.0014998636, 0.9999985, 0.000859515, 0.009848636, -0.0008742484, 0.9999511, -10.281911, 1.1372935, 3.064178)
+max_range = 3.0
 enable_comms = true
+tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.rLaserSensor"
 
 [node name="PushButton" parent="." unique_id=1216453833 instance=ExtResource("6_th6r0")]
-transform = Transform3D(0.9990911, 0, 0.042625383, 0, 1, 0, -0.042625383, 0, 0.9990911, -3.3823817, 0.06961167, 5.28276)
+transform = Transform3D(0.9990911, 0, 0.042625383, 0, 1, 0, -0.042625383, 0, 0.9990911, -9.369021, 0.06961167, 5.2015553)
 toggle = true
-lamp = true
 enable_comms = true
 pushbutton_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.btn_bMainPwr"
 lamp_tag_name = "ns=4;s=|var|CODESYS Control Win V3 x64.PLC_PRG.btn_bMainPwrLamp"
@@ -60,3 +74,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.007568, 0.88304555, 2.43010
 enable_comms = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1801069710]
+
+[node name="StackLight" parent="." unique_id=1223138583 instance=ExtResource("9_dp7fj")]
+transform = Transform3D(2.9877086, -0.033117883, -0.1576339, 0.22548568, 0.44854397, 0.08545785, 0.15083456, -0.014543371, 2.9946363, -6.8014007, 0.2650237, 4.9110856)
+_data = SubResource("Resource_hm2q3")
+"Light 1" = SubResource("Resource_kmise")
+tag_groups = null
